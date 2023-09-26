@@ -4,6 +4,7 @@ project(nbody)
 
 set(PROJECT_SOURCES 
     nbody.c
+    src/body.c
 )
 
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})

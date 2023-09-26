@@ -19,11 +19,10 @@ exit:
 	return iRet;
 }
 
-int renderStep(SDL_Renderer* renderer)
+int renderStep(SDL_Renderer* renderer, NBody_Simulation_t* nbs)
 {
 	int iRet = 1;
 	SDL_Event e = {0};
-	SDL_FRect rect = {0};
 
 	while (SDL_PollEvent(&e))
 	{
@@ -40,14 +39,7 @@ int renderStep(SDL_Renderer* renderer)
 	//draw bodies
    	if (0 != SDL_SetRenderDrawColor( renderer, 255, 255, 255, 255 )) goto exit;
 	
-	renderBodies(renderer);
-
-	rect.x = ((float)SDL_GetTicks()) / 100.0;
-	rect.y = 50;
-	rect.w = 1;
-	rect.h = 1;
-
-	if (0 != SDL_RenderFillRect(renderer, &rect)) goto exit;
+	renderBodies(renderer, nbs);
 	
 	//present to window
 	if (0 != SDL_RenderPresent(renderer)) goto exit;
@@ -62,6 +54,7 @@ int main(int argc, char *argv[])
 	SDL_Window* win = NULL;
 	SDL_Renderer* renderer = NULL;
 	int quit = 0; //using int to cut down on return type conversion later
+	NBody_Simulation_t* nbs = NULL;
 
 	//init sdl
     if (0 != SDL_Init(SDL_INIT_EVERYTHING)) {
@@ -91,11 +84,13 @@ int main(int argc, char *argv[])
 		goto exit;
 	}
 
+	//nbs = NBody_InitSimulation();//will probably take something like body_cnt, timestep, etc. 
+
 	//main loop
 	while (!quit)
 	{
 		//definitely do "event", dont do "render" if "event" step told us to quit. but if either tell us to quit, do it
-		quit = eventStep() || renderStep(renderer);
+		quit = eventStep() || renderStep(renderer, nbs);
 	}
 
 exit:

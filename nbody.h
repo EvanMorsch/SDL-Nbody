@@ -6,7 +6,8 @@
 #define nbody_h
 
 #include <SDL3/SDL.h>
-#include <SDL3/SDL_timer.h>
 #include <SDL3/SDL_events.h>
+
+#include "body.h"
 
 #endif
