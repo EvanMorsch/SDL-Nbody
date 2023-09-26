@@ -12,5 +12,8 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE pthread)
 
+add_subdirectory(deps/List)
+target_link_libraries(nbody PUBLIC list)
+
 add_subdirectory(deps/SDL3)
 target_link_libraries(${PROJECT_NAME} PRIVATE SDL3::SDL3)
