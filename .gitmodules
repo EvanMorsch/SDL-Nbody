@@ -4,3 +4,9 @@
 [submodule "deps/List"]
 	path = deps/List
 	url = git@github.com:EvanMorsch/C-List.git
+[submodule "deps/Vec"]
+	path = deps/Vec
+	url = git@github.com:EvanMorsch/Vector_c.git
+[submodule "deps/SDL3_TTF"]
+	path = deps/SDL3_TTF
+	url = git@github.com:libsdl-org/SDL_ttf.git
